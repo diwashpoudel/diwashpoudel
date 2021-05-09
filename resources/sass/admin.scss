@@ -1,0 +1,15 @@
+@import "~@fortawesome/fontawesome-free/css/all.css";
+@import "~overlayscrollbars/css/OverlayScrollbars.css";
+@import "../css/admin.css";
+@import "~lightbox2/src/css/lightbox.css";
+@import "sweetalert2/dist/sweetalert2.css";
+@import "select2/select2.css";
+
+
+.btn-rounded ,.img-circle{
+    border-radius: 50%;
+}
+.dark-mode .select2-container .select2-search--inline .select2-search__field {
+    background-color: transparent;
+    color: #272626;
+}
