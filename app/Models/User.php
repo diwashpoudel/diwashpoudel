@@ -62,7 +62,7 @@ class User extends Authenticatable
                 $rules = array(
                     'status'=>'required|in:active, inactive',
                     'role'=>'required|in:admin,seller,customer',
-                    'email'=>'required|users:users,email',
+                    'email'=>'required|unique:users,email',
                     'password'=>'required|confirmed|string|min:8'
                     //'password_conformation'=>'required|confirmed|string|min:8'
                 );

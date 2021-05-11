@@ -75,7 +75,7 @@ class CategoryController extends Controller
                     foreach($request->brand_id as $ids)
                     {
                         $temp[] = array(
-                        'bramd_id'=>$ids,
+                        'brand_id'=>$ids,
                         'category_id'=>$this->category->id );
                     }
                     $this->brand_cats->insert($temp);

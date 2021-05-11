@@ -29,7 +29,7 @@ class Category extends Model
         return array(
                 'title'=>'required|string|max:100',
                 'status'=>'required|in:active,inactive',
-                'parent_id'=>'nullble|exists:categories,id',
+                'parent_id'=>'nullable|exists:categories,id',
                 'image'=>'sometimes|image|max:'.env('MAX_UPLOAD_SIZE',5000),
                 'brand_id.*'=>'nullable|exists:brands,id'
         );
@@ -48,7 +48,7 @@ class Category extends Model
 
             public function subCats()
             {
-                return $this->hasMany("App\Model\Category","paremt_id","id");
+                return $this->hasMany("App\Models\Category","parent_id","id");
             }
 
             public function brandIds()

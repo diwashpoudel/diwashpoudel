@@ -3037,7 +3037,8 @@ $(document).on('click', '.delete_btn', function () {
 });
 setTimeout(function () {
   $('.alert').slideUp();
-}, 3000); //  $('#brand_id').select2();
+}, 3000);
+$('#brand_id').select2();
 
 /***/ }),
 

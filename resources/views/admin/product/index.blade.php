@@ -11,7 +11,7 @@
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item">
                 <a href="{{ route(auth()->user()->role) }}">Home</a></li>
-               <li class="breadcrumb-item active">Category List</li>
+               <li class="breadcrumb-item active">Banner List</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -29,9 +29,9 @@
             <!-- MAP & BOX PANE -->
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">List Category</h3>
-                <a href="{{ route('category.create') }}" class="float-right btn btn-sm btn-success">
-                  <i class="fas fa-plus"> Create Category</i>
+                <h3 class="card-title">List Banner</h3>
+                <a href="{{ route('banner.create') }}" class="float-right btn btn-sm btn-success">
+                  <i class="fas fa-plus"> Create Banner</i>
                 </a>
                  
               </div>
@@ -43,7 +43,7 @@
                    <table class="table table-sm table-hover table-bordered">
                       <thead class="table-dark">
                         <th>Title</th>
-                        <th>Sub Category</th>
+                        <th>Link</th>
                         <th>Image</th>
                         <th>Status</th>
                         <th>Created By</th>
@@ -58,12 +58,10 @@
                               {{ $value->title }}
                             </td>
                           <td>
-                             @if($value->subCats->count()>0)
-                              <a href="{{ route('category.show',$value->id) }}" class="btn btn-link">View Sub-Category</a>
-                             @endif
+                             <a href="{{ $value->link }}" target="_banner" class="btn-link">{{ $value->link }}</a>
                          </td>  
                             <td>
-                              <a href="{{ asset('uploads/category'.$value->image) }}" data-lightbox="category-{{ $value->id }}" data-title="{{ $value->title }}">View Images</a>
+                              <a href="{{ asset('uploads/banner'.$value->image) }}" data-lightbox="banner-{{ $value->id }}" data-title="{{ $value->title }}">View Images</a>
                             
                             </td>  
                             <td>
@@ -74,14 +72,14 @@
                               {{ @$value->createdBy->name }}
                             </td>
                               <td>
-                                    <a href="{{route('category.edit',$value->id)}}" class="btn btn-sm btn-success">
+                                    <a href="{{route('banner.edit',$value->id)}}" class="btn btn-sm btn-success">
                                       <i class="fa fa-pen"></i>
                                     </a>
 
                                       <a href="javascript:;" class="btn btn-sm btn-danger delete_btn">
                                       <i class="fas fa-trash"></i>
                                     </a>
-                                    {{ Form::open(['url'=>route('category.destroy' ,$value->id) , "class"=>"delete_form"]  )  }}
+                                    {{ Form::open(['url'=>route('banner.destroy' ,$value->id) , "class"=>"delete_form"]  )  }}
                                     @method('delete')
                                     {{ Form::close()}}
                             </td>

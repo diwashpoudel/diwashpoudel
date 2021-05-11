@@ -170,12 +170,22 @@
             </a>
             <ul class="nav nav-treeview offset-1">
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{ route('product.create') }}" class="nav-link">
                   <i class="fas fa-plus"></i>
-                  <p>Add</p>
+                  <p>Add Product</p>
                 </a>
               </li>
             </ul>
+
+            <ul class="nav nav-treeview offset-1">
+              <li class="nav-item">
+                <a href="{{ route('product.index' ) }}" class="nav-link">
+                  <i class="fas fa-list"></i>
+                  <p>List Product</p>
+                </a>
+              </li>
+            </ul>
+
           </li>
 
            <li class="nav-item">

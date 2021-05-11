@@ -35,6 +35,7 @@ Route::group(['namespace'=>"App\Http\Controllers"],function(){
              Route::resource('banner','BannerController')->except('show');
              Route::resource('brand','BrandController')->except('show');
              Route::resource('category','CategoryController');
+             Route::resource('product', 'ProductController');
             });
 
         //Seller Routes

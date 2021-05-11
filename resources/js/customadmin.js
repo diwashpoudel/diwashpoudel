@@ -32,4 +32,4 @@ setTimeout(function(){
  }, 3000);
 
  
-//  $('#brand_id').select2();
+$('#brand_id').select2();
