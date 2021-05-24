@@ -69,4 +69,9 @@ class User extends Authenticatable
             }
             return $rules;
     }
+
+    public function getUserByType($type)
+    {
+        return $this->where('role',$type)->get();
+    }
 }

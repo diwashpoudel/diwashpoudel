@@ -1,5 +1,78 @@
 @extends('layouts.admin')
 @section('title', 'Mero_Dokan')
+@section('scripts')
+  <script>
+    $('#category_id').change(function(){
+      var cat_id = $(this).val();
+      var sub_cat_id ={{ isset($detail) ? $detail->sub_category_id : 0}};
+      var brand_id ={{ isset($detail) ? $detail->brand_id : 0}};
+
+
+
+      $.ajax(
+        {
+          url:"{{ route('get-category') }}",
+          type:"get",
+          data:{
+                //_token : "{{ csrf_token() }}",
+                cat_id: cat_id
+          },
+
+        success: function(response){
+          if(typeof(response)!= 'object'){
+            response = JSON.parse(response);
+          }
+
+          // console.log(response);
+          var sub_cats_drop = "<option value=''>--Select AnyOne--</option>";
+             var brand_drop = "<option value=''>--Select AnyOne--</option>";
+          if(response.error== false ){
+           
+              if(response.data.child_cats.length != 0)
+              {
+                $.each(response.data.child_cats , function(index,value)
+                {
+                  sub_cats_drop += "<option value = '"+index+"' "  ;
+                  if(sub_cat_id != 0 && sub_cat_id == index)
+                  {
+                      sub_cats_drop += 'selected';
+                  }
+                  sub_cats_drop += ">"+value+"</option>";
+                  
+                })
+              }
+
+              if(response.data.brand.length != 0)
+              {
+                $.each(response.data.brand , function(index,value)
+                {
+                  brand_drop += "<option value = '"+value.brand_id+"'";
+                  if(brand_id != 0 && brand_id == brand_info.brand_id)
+                  {
+                      brand_drop += 'selected';
+                  }
+                
+                  brand_drop += " >"+value.brands.title+"</option>";
+                })
+              }
+        
+          }
+          $('#sub_category_id').html(sub_cats_drop);
+           $('#product_brand_id').html(brand_drop);
+
+        },
+
+        
+
+        }
+      );
+    });
+
+    @if(isset($detail))
+      $('#category_id').change();
+    @endif
+  </script>
+@endsection
 @section( 'main-content')
 <div class="content-header">
       <div class="container-fluid">
@@ -47,6 +120,7 @@
                     @else
                     {{Form::open(['url'=>route('product.store') , 'class'=>'form ','files'=>true ])}}
                     @endif
+
                     <div class="form-group row">
 
                        {{  Form::label('title', 'Title:',['class'=>'col-sm-3']) }}
@@ -76,7 +150,7 @@
 
                       {{  Form::label('description', 'Description:',['class'=>'col-sm-3']) }}
                       <div class="col-sm-9">
-                        {{ Form::textarea('description', @html_entity_decode($detail->description),['class'=>'form-control form-control-sm','required'=>'true','placeholder'=>'Enter Product description Here' ,'id'=>'description','rows'=>5,'style'=>'resize:none']) }}
+                        {{ Form::textarea('description', @html_entity_decode($detail->description),['class'=>'form-control form-control-sm','required'=>'false','placeholder'=>'Enter Product description Here' ,'id'=>'description_id','rows'=>5,'style'=>'resize:none']) }}
                        @error('description')
                        <span class="text-danger">{{ $message }}</span>
                          
@@ -87,34 +161,110 @@
 
                      <div class="form-group row">
 
-                       {{  Form::label('status', 'Status:',['class'=>'col-sm-3']) }}
+                       {{  Form::label('category_id', 'Category:',['class'=>'col-sm-3']) }}
                        <div class="col-sm-9">
-                         {{ Form::select('status',['active'=>'Published','inactive'=>'Unpublished'],@$detail->status,['class'=>'form-control form-control-sm','required'=>'true'  ,'id'=>'title']) }}
-                        @error('title')
+                         {{ Form::select('category_id', @$category_data,@$detail->category_id,['class'=>'form-control form-control-sm','required'=>'true' ,'placeholder'=>'--------Select Any Category ------' ,'id'=>'category_id']) }}
+                        @error('category_id')
                         <span class="text-danger">{{ $message }}</span>
                           
                         @enderror
                         </div>
                     </div>
 
+
                     <div class="form-group row">
 
-                      {{  Form::label('', 'Status:',['class'=>'col-sm-3']) }}
+                      {{  Form::label('sub_category_id', 'Sub-Category:',['class'=>'col-sm-3']) }}
                       <div class="col-sm-9">
-                        {{ Form::select('status',['active'=>'Published','inactive'=>'Unpublished'],@$detail->status,['class'=>'form-control form-control-sm','required'=>'true'  ,'id'=>'title']) }}
-                       @error('title')
+                        {{ Form::select('sub_category_id',[] ,@$detail->sub_category_id,['class'=>'form-control form-control-sm','required'=>'false' ,'placeholder'=>'--------Select Category ------' ,'id'=>'sub_category_id']) }}
+                       @error('sub_category_id')
                        <span class="text-danger">{{ $message }}</span>
                          
                        @enderror
                        </div>
                    </div>
 
+                   <div class="form-group row">
+
+                    {{  Form::label('brand_id', 'Brand:',['class'=>'col-sm-3']) }}
+                    <div class="col-sm-9">
+                      {{ Form::select('brand_id',[] ,@$detail->brand_id,['class'=>'form-control form-control-sm','required'=>'false' ,'placeholder'=>'--------Select Brand ------'  ,'id'=>'product_brand_id']) }}
+                     @error('brand_id')
+                     <span class="text-danger">{{ $message }}</span>
+                       
+                     @enderror
+                     </div>
+                 </div>
+
+                 <div class="form-group row">
+
+                  {{  Form::label('price', 'Price(NPR):',['class'=>'col-sm-3']) }}
+                  <div class="col-sm-9">
+                    {{ Form::number('price',@$detail->price,['class'=>'form-control form-control-sm','required'=>'true','placeholder'=>'Enter Product price Here' ,'id'=>'price','min'=>1]) }}
+                   @error('price')
+                   <span class="text-danger">{{ $message }}</span>
+                     
+                   @enderror
+                   </div>
+               </div>
+
+
+               <div class="form-group row">
+
+                {{  Form::label('discount', 'Discount(%):',['class'=>'col-sm-3']) }}
+                <div class="col-sm-9">
+                  {{ Form::number('discount',@$detail->discount,['class'=>'form-control form-control-sm','required'=>'false','placeholder'=>'Enter Product discount Here' ,'id'=>'discount','min'=>1,'max'=>90]) }}
+                 @error('discount')
+                 <span class="text-danger">{{ $message }}</span>
+                   
+                 @enderror
+                 </div>
+             </div>
+
+             <div class="form-group row">
+
+              {{  Form::label('featured', 'featured:',['class'=>'col-sm-3']) }}
+              <div class="col-sm-9">
+                {{ Form::checkbox('featured','1',@$detail->featured,[ 'required'=>'false','id'=>'featured']) }}Yes
+               @error('featured')
+               <span class="text-danger">{{ $message }}</span>
+                 
+               @enderror
+               </div>
+           </div>
+
+
+                    <div class="form-group row">
+                      {{  Form::label('', 'Status:',['class'=>'col-sm-3']) }}
+                      <div class="col-sm-9">
+                        {{ Form::select('status',['active'=>'Published','inactive'=>'Unpublished'],@$detail->status,['class'=>'form-control form-control-sm','required'=>'true'  ,'id'=>'status']) }}
+                       @error('status')
+                       <span class="text-danger">{{ $message }}</span>
+                         
+                       @enderror
+                       </div>
+                   </div>
+
+                  
+                  
+                   <div class="form-group row">
+                    {{  Form::label('seller_id', 'Seller:',['class'=>'col-sm-3']) }}
+                    <div class="col-sm-9">
+                      {{ Form::select('seller_id',$seller,@$detail->seller_id,['class'=>'form-control form-control-sm','required'=>'false'  ,'id'=>'seller_id','placeholder'=>'----Select Seller----']) }}
+                     @error('seller_id')
+                     <span class="text-danger">{{ $message }}</span>
+                       
+                     @enderror
+                     </div>
+                 </div>
+
+
 
            <div class="form-group row ">
               {{ form::label('image','Image:',['class'=>'col-sm-3']) }}
               <div class="col-sm-3">
 
-                  {{ form::file('image' ,['required'=>false, 'id'=>'image','accept'=>'image/*', 'onchange'=>'readURL(this ,"thumb")']) }}
+                  {{ form::file('image[]' ,['required'=>false, 'id'=>'product_image','accept'=>'image/*', 'onchange'=>'readURL(this ,"thumb")','multiple'=>'true']) }}
                   @error('image')
                     <span class="text-danger">{{ $message }}</span>
                   @enderror
@@ -133,7 +283,17 @@
                     </div>
                 </div>
       </div>
-                </div>
+  </div>
+    @if(isset($detail) && !empty($detail->getImages))
+        <div class="form-group row">
+          @foreach ($detail->getImages as $image)
+            <div class="col-sm-12 col-md-">
+              <img src="{{ asset('uploads/product/'.$image->name) }}" alt="" class="img img-fluid img-thumbnail">
+            {{ Form::checkbox('delimage[]',$image->name,false) }}Delete
+            </div>
+          @endforeach
+        </div>
+    @endif
 
 
       <div class="form-group row">

@@ -161,25 +161,14 @@
               {{ form::label('image','Image:',['class'=>'col-sm-3']) }}
               <div class="col-sm-3">
 
-                  {{ form::file('image' ,['required'=>false, 'id'=>'image','accept'=>'image/*', 'onchange'=>'readURL(this ,"thumb")']) }}
+                  {{ form::file('image' ,['required'=>(isset($detail)?false:true), 'id'=>'image','accept'=>'image/*', 'multiple'=>'true']) }}
                   @error('image')
                     <span class="text-danger">{{ $message }}</span>
                   @enderror
                     
                
               </div>
-                  <div class="col-sm-2">
-                    @if(isset($detail) && $detail->image !== null)
-                      @php $url = asset('uploads/user/'.$detail->image);@endphp
-                      @else
-                      @php  $url =  asset('image/noimage.png');@endphp
-                    @endif
-                         
-                  
-                     <img src="{{ $url }}" class="img img-thumbnail " id="thumb">  
-                    </div>
-                </div>
-      </div>
+         
                 </div>
 
 

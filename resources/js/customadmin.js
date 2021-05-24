@@ -6,6 +6,7 @@ require('jquery-mousewheel/jquery.mousewheel');
 require('lightbox2/src/js/lightbox');
 require('sweetalert2/dist/sweetalert2');
 require('select2/select2');
+require('summernote/dist/summernote-bs4');
 
 
 global.readURL = function(inputFile, imgId) {
@@ -33,3 +34,9 @@ setTimeout(function(){
 
  
 $('#brand_id').select2();
+
+$('#description_id').summernote(
+    {
+        height:200
+    }
+);

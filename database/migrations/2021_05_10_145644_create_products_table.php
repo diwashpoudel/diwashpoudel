@@ -23,6 +23,7 @@ class CreateProductsTable extends Migration
             $table->longText('description')->nullable();
             $table->float('price');
             $table->float('discount')->nullable();
+            $table->float('actual_cost');
             $table->boolean('featured')->default(false);
             $table->foreignId('brand_id')->nullable()->constrained('brands','id')->cascadeOnUpdate()->nullOnDelete();
             $table->foreignId('seller_id')->nullable()->constrained('users','id')->cascadeOnUpdate()->nullOnDelete();

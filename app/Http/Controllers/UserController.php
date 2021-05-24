@@ -6,8 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\UserInfo;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\ValidationServiceProvider;
+ 
 
 class UserController extends Controller
 {
@@ -76,7 +75,7 @@ class UserController extends Controller
                 $route_param = "all";
              $request->session()->flash('error','sorry!there was problem while adding user');
          }
-         return redirect()->route('user.show',$route_param);
+         return redirect()->route('user.show', $route_param);
     }
 
     /**

@@ -11,7 +11,7 @@
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item">
                 <a href="{{ route(auth()->user()->role) }}">Home</a></li>
-               <li class="breadcrumb-item active">Product List</li>
+               <li class="breadcrumb-item active">Page List</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -29,10 +29,8 @@
             <!-- MAP & BOX PANE -->
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">List Product</h3>
-                <a href="{{ route('product.create') }}" class="float-right btn btn-sm btn-success">
-                  <i class="fas fa-plus"> Create Product</i>
-                </a>
+                <h3 class="card-title">List Page</h3>
+                 
                  
               </div>
               <!-- /.card-header -->
@@ -43,13 +41,9 @@
                    <table class="table table-sm table-hover table-bordered">
                       <thead class="table-dark">
                         <th>Title</th>
-                        <th>Category</th>
-                        <td>Brand</td>
-                        <th>Price</th>
-                        <th>Featured</th>
-                        <th>Status</th>
-                        <th>Seller</th>
-                        <th>Action</th>
+                        <th>Summary</th>
+                        <th>Image</th>
+                         <th>Action</th>
                       </thead>
 
                       <tbody>
@@ -60,40 +54,19 @@
                               {{ $value->title }}
                             </td>
                           <td>
-                              {{ $value->categoryInfo->title }}
-                              @if($value->sub_category_id)
-                                  <sub>
-                                      {{ $value->subCategoryInfo->title }}
-                                  </sub>
-                              @endif
-                         </td> 
-                         <td>
-                            {{ @$value->brandInfo->title }}
-                        </td> 
+                                  {{ $value->summary }}   
+                          </td>  
                             <td>
-                                  NPR.{{ number_format($value->actual_cost) }}            
-                            </td>
-                            <td>
-                                {{ ($value->featured == 1) ? 'yes' : 'No' }}
+                              <a href="{{ asset('uploads/page'.$value->image) }}" data-lightbox="page-{{ $value->id }}" data-title="{{ $value->title }}">View Images</a>
+                            
                             </td>  
-                            <td>
-                              <span class="badge badge-{{ $value->status == 'active' ? 'success' :'danger'}}"> {{ ucfirst($value->status) }}</span>
-                             
-                            </td> 
                              <td>
-                              {{ @$value->sellerInfo->name}}
-                            </td>
-                              <td>
-                                    <a href="{{route('product.edit',$value->id)}}" class="btn btn-sm btn-success">
+                                    <a href="{{route('page.edit',$value->id)}}" class="btn btn-sm btn-success">
                                       <i class="fa fa-pen"></i>
                                     </a>
 
-                                      <a href="javascript:;" class="btn btn-sm btn-danger delete_btn">
-                                      <i class="fas fa-trash"></i>
-                                    </a>
-                                    {{ Form::open(['url'=>route('product.destroy' ,$value->id) , "class"=>"delete_form"]  )  }}
-                                    @method('delete')
-                                    {{ Form::close()}}
+                                      
+                                   
                             </td>
                           </tr>
 

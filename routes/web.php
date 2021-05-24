@@ -36,6 +36,7 @@ Route::group(['namespace'=>"App\Http\Controllers"],function(){
              Route::resource('brand','BrandController')->except('show');
              Route::resource('category','CategoryController');
              Route::resource('product', 'ProductController');
+             Route::resource('page', 'PageController')->except(['create','store','destroy']);
             });
 
         //Seller Routes
@@ -52,4 +53,6 @@ Route::group(['namespace'=>"App\Http\Controllers"],function(){
 
 
      });
+
+     Route::get('get-category','CategoryController@getAllCategories')->name('get-category');
 });

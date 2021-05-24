@@ -9,4 +9,9 @@ class BrandCategory extends Model
 {
     use HasFactory;
     protected $fillable = ['brand_id','category_id'];
+
+    public function brands()
+    {
+        return $this->hasOne('App\Models\Brand','id','brand_id');
+    }
 }

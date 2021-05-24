@@ -27,6 +27,7 @@
         "overlayscrollbars": "1.13.1",
         "popper.js": "1.16.1",
         "select2": "^3.5.1",
+        "summernote": "^0.8.18",
         "sweetalert2": "^10.16.6"
     }
 }

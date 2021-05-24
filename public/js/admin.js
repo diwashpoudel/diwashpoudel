@@ -3016,6 +3016,8 @@ __webpack_require__(/*! sweetalert2/dist/sweetalert2 */ "./node_modules/sweetale
 
 __webpack_require__(/*! select2/select2 */ "./node_modules/select2/select2.js");
 
+__webpack_require__(/*! summernote/dist/summernote-bs4 */ "./node_modules/summernote/dist/summernote-bs4.js");
+
 __webpack_require__.g.readURL = function (inputFile, imgId) {
   if (inputFile.files && inputFile.files[0]) {
     var reader = new FileReader();
@@ -3039,6 +3041,9 @@ setTimeout(function () {
   $('.alert').slideUp();
 }, 3000);
 $('#brand_id').select2();
+$('#description_id').summernote({
+  height: 200
+});
 
 /***/ }),
 

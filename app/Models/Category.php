@@ -54,7 +54,9 @@ class Category extends Model
             public function brandIds()
             {
                  
-                    return $this->hasMany('App\Model\BrandCategory','category_id','id');
+                    return $this->hasMany('App\Models\BrandCategory','category_id','id')->with('brands');
                 
             }
+
+            
 }

@@ -211,4 +211,28 @@ class CategoryController extends Controller
             return redirect()->back();
         }
     }
+
+    public function getAllCategories(Request $request)
+    {
+        $this->category = $this->category->find($request->cat_id);
+        if(!$this->category)
+        {
+            return response()->json([
+                'data'=>null,
+                'error'=>true,
+                'msg'=>'Invalid Category ID'
+            ]);
+        }
+           
+            return response()->json(
+                [
+                    'data'=>[
+                        'child_cats'=>$this->category->subCats->pluck('title','id'),
+                        'brand'=>$this->category->brandIds                    ],
+                    
+                    'error'=>false,
+                    'msg'=>'Success'
+                ]
+                );
+    }
 }

@@ -263,21 +263,14 @@
 
 
            <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{ route('page.index') }}" class="nav-link">
               <i class="nav-icon fas fa-file"></i>
               <p>
                   Pages Manager
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
-            <ul class="nav nav-treeview offset-1">
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Level 2</p>
-                </a>
-              </li>
-            </ul>
+             
           </li>
 
            <li class="nav-item">
