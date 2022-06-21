@@ -22,15 +22,13 @@
 </div>
 
 <br>
-<div align="center">
-<h3><b>😄 Connect With Me</b></h3>
-</div>
+ 
 <p align="center">
-<a href="https://codepen.io/rock12231" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/codepen.svg" alt="rock12231" height="30" width="40" /></a>
-<a href="https://twitter.com/rock12231" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/twitter.svg" alt="rock12231" height="30" width="40" /></a>
-<a href="https://linkedin.com/in/rock1223" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/linked-in-alt.svg" alt="rock1223" height="30" width="40" /></a>
-<a href="https://www.hackerrank.com/rock1223" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/hackerrank.svg" alt="rock1223" height="30" width="40" /></a>
+&nbsp; <a href="https://www.instagram.com/diwash_pdl/?hl=en" target="_blank" rel="noopener noreferrer"><img src="https://img.icons8.com/plasticine/100/000000/instagram-new.png" width="50" /></a>  
+&nbsp; <a href="https://www.linkedin.com/in/diwash-paudel-43b4a6157/" target="_blank" rel="noopener noreferrer"><img src="https://img.icons8.com/plasticine/100/000000/linkedin.png" width="50" /></a>
+&nbsp; <a href="mailto:diwash302@gmail.com" target="_blank" rel="noopener noreferrer"><img src="https://img.icons8.com/plasticine/100/000000/gmail.png"  width="50" /></a>
 </p>
+
 <br>
 <h1 align = 'Center'>Watch a 🐍 eating my contribution graph</h1>
 <p align="center">
@@ -40,12 +38,6 @@
 
 
 <h3> 🤝🏻 Connect with Me </h3>
-
-<p align="center">
-&nbsp; <a href="https://www.instagram.com/diwash_pdl/?hl=en" target="_blank" rel="noopener noreferrer"><img src="https://img.icons8.com/plasticine/100/000000/instagram-new.png" width="50" /></a>  
-&nbsp; <a href="https://www.linkedin.com/in/diwash-paudel-43b4a6157/" target="_blank" rel="noopener noreferrer"><img src="https://img.icons8.com/plasticine/100/000000/linkedin.png" width="50" /></a>
-&nbsp; <a href="mailto:diwash302@gmail.com" target="_blank" rel="noopener noreferrer"><img src="https://img.icons8.com/plasticine/100/000000/gmail.png"  width="50" /></a>
-</p>
 
  
  
